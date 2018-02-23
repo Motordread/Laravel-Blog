@@ -27,7 +27,7 @@ return array(
 		 *
 		 * @type string
 		 */
-		'view' => 'laravel-blog::posts.index',
+		'view' => 'laravel-blog.posts.index',
 
 		/**
 		 * Determines whether to show the archives on the index page
@@ -56,7 +56,7 @@ return array(
 		 * provided you have a blade layout called `master`, or you can leave this setting as it is, but create a new
 		 * view file inside you own app at `app/views/packages/fbf/laravel-blog/posts/view.blade.php`.
 		 */
-		'view' => 'laravel-blog::posts.view',
+		'view' => 'laravel-blog.posts.view',
 
 		/**
 		 * Determines whether to show the archives on the view page

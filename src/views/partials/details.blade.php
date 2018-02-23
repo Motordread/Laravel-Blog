@@ -2,7 +2,7 @@
 
 	<p class="item--all-link">
 		<a href="{{ action('Fbf\LaravelBlog\PostsController@index') }}">
-			{{ trans('laravel-blog::messages.details.all_link_text') }}
+			{{ trans('laravel-blog.messages.details.all_link_text') }}
 		</a>
 	</p>
 
@@ -18,8 +18,8 @@
 		{{ $post->summary }}
 	</div>
 
-	@if (config('laravel-blog::views.view_page.show_share_partial'))
-		@include('laravel-blog::partials.share')
+	@if (config('laravel-blog.views.view_page.show_share_partial'))
+		@include('laravel-blog.partials.share')
 	@endif
 
 	@if (!empty($post->you_tube_video_id))
@@ -34,7 +34,7 @@
 
 	{{ $post->content }}
 
-	@if (config('laravel-blog::link.show') && !empty($post->link_url) && !empty($post->link_text))
+	@if (config('laravel-blog.link.show') && !empty($post->link_url) && !empty($post->link_text))
 		<p class="item--external-link">
 			<a href="{{ $post->link_url }}">
 				{{ $post->link_text }}
@@ -44,6 +44,6 @@
 
 </div>
 
-@if (config('laravel-blog::views.view_page.show_adjacent_items') && ($newer || $older))
-	@include('laravel-blog::partials.adjacent')
+@if (config('laravel-blog.views.view_page.show_adjacent_items') && ($newer || $older))
+	@include('laravel-blog.partials.adjacent')
 @endif

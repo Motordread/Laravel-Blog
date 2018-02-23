@@ -36,7 +36,7 @@
 		
 				<p class="item--more-link">
 					<a href="{{ $post->getUrl() }}" title="{{ $post->title }}">
-						{{ trans('laravel-blog::messages.list.more_link_text') }}
+						{{ trans('laravel-blog.messages.list.more_link_text') }}
 					</a>
 				</p>
 		
@@ -49,7 +49,7 @@
 	@else
 
 		<p class="item-list--empty">
-			{{ trans('laravel-blog::messages.list.no_items') }}
+			{{ trans('laravel-blog.messages.list.no_items') }}
 		</p>
 
 	@endif

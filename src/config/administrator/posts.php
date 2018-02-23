@@ -66,21 +66,21 @@ return array(
 			'title' => 'Main Image',
 			'type' => 'image',
 			'naming' => 'random',
-			'location' => public_path() . config('laravel-blog::images.main_image.original.dir'),
+			'location' => public_path() . config('laravel-blog.images.main_image.original.dir'),
 			'size_limit' => 5,
 			'sizes' => array(
 				array(
-					config('laravel-blog::images.main_image.sizes.thumbnail.width'),
-					config('laravel-blog::images.main_image.sizes.thumbnail.height'),
-					config('laravel-blog::images.main_image.sizes.thumbnail.method'),
-					public_path() . config('laravel-blog::images.main_image.sizes.thumbnail.dir'),
+					config('laravel-blog.images.main_image.sizes.thumbnail.width'),
+					config('laravel-blog.images.main_image.sizes.thumbnail.height'),
+					config('laravel-blog.images.main_image.sizes.thumbnail.method'),
+					public_path() . config('laravel-blog.images.main_image.sizes.thumbnail.dir'),
 					100
 				),
 				array(
-					config('laravel-blog::images.main_image.sizes.resized.width'),
-					config('laravel-blog::images.main_image.sizes.resized.height'),
-					config('laravel-blog::images.main_image.sizes.resized.method'),
-					public_path() . config('laravel-blog::images.main_image.sizes.resized.dir'),
+					config('laravel-blog.images.main_image.sizes.resized.width'),
+					config('laravel-blog.images.main_image.sizes.resized.height'),
+					config('laravel-blog.images.main_image.sizes.resized.method'),
+					public_path() . config('laravel-blog.images.main_image.sizes.resized.dir'),
 					100
 				),
 			),
@@ -106,12 +106,12 @@ return array(
 		'link_text' => array(
 			'title' => 'Link Text',
 			'type' => 'text',
-			'visible' => config('laravel-blog::link.show'),
+			'visible' => config('laravel-blog.link.show'),
 		),
 		'link_url' => array(
 			'title' => 'Link URL',
 			'type' => 'text',
-			'visible' => config('laravel-blog::link.show'),
+			'visible' => config('laravel-blog.link.show'),
 		),
 		'is_sticky' => array(
 			'title' => 'Is sticky?',

@@ -10,7 +10,7 @@ class PostTableFakeSeeder extends \Seeder {
 
 		$this->faker = \Faker\Factory::create();
 
-		$numberToCreate = config('laravel-blog::seed.number');
+		$numberToCreate = config('laravel-blog.seed.number');
 
 		for ($i = 0; $i < $numberToCreate; $i++)
 		{
@@ -22,7 +22,7 @@ class PostTableFakeSeeder extends \Seeder {
 
 	protected function truncate()
 	{
-		$replace = config('laravel-blog::seed.replace');
+		$replace = config('laravel-blog.seed.replace');
 		if ($replace)
 		{
 			\DB::table('fbf_blog_posts')->delete();
@@ -67,31 +67,31 @@ class PostTableFakeSeeder extends \Seeder {
 
 	protected function hasYouTubeVideos()
 	{
-		$youTubeVideoFreq = config('laravel-blog::seed.you_tube.freq');
+		$youTubeVideoFreq = config('laravel-blog.seed.you_tube.freq');
 		$hasYouTubeVideos = $youTubeVideoFreq > 0 && rand(1, $youTubeVideoFreq) == $youTubeVideoFreq;
 		return $hasYouTubeVideos;
 	}
 
 	protected function setYouTubeVideoId()
 	{
-		$this->post->you_tube_video_id = $this->faker->randomElement(config('laravel-blog::seed.you_tube.video_ids'));
+		$this->post->you_tube_video_id = $this->faker->randomElement(config('laravel-blog.seed.you_tube.video_ids'));
 	}
 
 	protected function hasMainImage()
 	{
-		$mainImageFreq = config('laravel-blog::seed.images.main_image.freq');
+		$mainImageFreq = config('laravel-blog.seed.images.main_image.freq');
 		$hasMainImage = $mainImageFreq > 0 && rand(1, $mainImageFreq) == $mainImageFreq;
 		return $hasMainImage;
 	}
 
 	protected function doMainImage()
 	{
-		$imageOptions = config('laravel-blog::images.main_image');
+		$imageOptions = config('laravel-blog.images.main_image');
 		if (!$imageOptions['show'])
 		{
 			return false;
 		}
-		$seedOptions = config('laravel-blog::seed.images.main_image');
+		$seedOptions = config('laravel-blog.seed.images.main_image');
 		$original = $this->faker->image(
 			public_path($imageOptions['original']['dir']),
 			$seedOptions['original_width'],
@@ -133,25 +133,25 @@ class PostTableFakeSeeder extends \Seeder {
 
 	protected function hasLink()
 	{
-		$showLink =  config('laravel-blog::link.show');
+		$showLink =  config('laravel-blog.link.show');
 		if (!$showLink)
 		{
 			return false;
 		}
-		$linkFreq = config('laravel-blog::seed.link.freq');
+		$linkFreq = config('laravel-blog.seed.link.freq');
 		$hasLink = $linkFreq > 0 && rand(1, $linkFreq) == $linkFreq;
 		return $hasLink;
 	}
 
 	protected function setLinkText()
 	{
-		$linkTexts = config('laravel-blog::seed.link.texts');
+		$linkTexts = config('laravel-blog.seed.link.texts');
 		$this->post->link_text = $this->faker->randomElement($linkTexts);
 	}
 
 	protected function setLinkUrl()
 	{
-		$linkUrls = config('laravel-blog::seed.link.urls');
+		$linkUrls = config('laravel-blog.seed.link.urls');
 		$this->post->link_url = $this->faker->randomElement($linkUrls);
 	}
 

@@ -26,10 +26,10 @@ class PostsController extends Controller {
 		$posts = $this->post->live()
 			->orderBy($this->post->getTable().'.is_sticky', 'desc')
 			->orderBy($this->post->getTable().'.published_date', 'desc')
-			->paginate(config('laravel-blog::views.index_page.results_per_page'));
+			->paginate(config('laravel-blog.views.index_page.results_per_page'));
 
 		// Get the archives data if the config says to show the archives on the index page
-		if (config('laravel-blog::views.index_page.show_archives'))
+		if (config('laravel-blog.views.index_page.show_archives'))
 		{
 			$archives = $this->post->archives();
 		}
@@ -49,15 +49,15 @@ class PostsController extends Controller {
 			->byYearMonth($selectedYear, $selectedMonth)
 			->orderBy($this->post->getTable().'.is_sticky', 'desc')
 			->orderBy($this->post->getTable().'.published_date', 'desc')
-			->paginate(config('laravel-blog::views.index_page.results_per_page'));
+			->paginate(config('laravel-blog.views.index_page.results_per_page'));
 
 		// Get the archives data if the config says to show the archives on the index page
-		if (config('laravel-blog::views.index_page.show_archives'))
+		if (config('laravel-blog.views.index_page.show_archives'))
 		{
 			$archives = $this->post->archives();
 		}
 
-		return \View::make(config('laravel-blog::views.index_page.view'), compact('posts', 'selectedYear', 'selectedMonth', 'archives'));
+		return \View::make(config('laravel-blog.views.index_page.view'), compact('posts', 'selectedYear', 'selectedMonth', 'archives'));
 	}
 
 	/**
@@ -71,15 +71,15 @@ class PostsController extends Controller {
 			->byRelationship($relationshipIdentifier)
 			->orderBy($this->post->getTable().'.is_sticky', 'desc')
 			->orderBy($this->post->getTable().'.published_date', 'desc')
-			->paginate(config('laravel-blog::views.index_page.results_per_page'));
+			->paginate(config('laravel-blog.views.index_page.results_per_page'));
 
 		// Get the archives data if the config says to show the archives on the index page
-		if (config('laravel-blog::views.index_page.show_archives'))
+		if (config('laravel-blog.views.index_page.show_archives'))
 		{
 			$archives = $this->post->archives();
 		}
 
-		return \View::make(config('laravel-blog::views.index_page.view'), compact('posts', 'archives'));
+		return \View::make(config('laravel-blog.views.index_page.view'), compact('posts', 'archives'));
 	}
 
 	/**
@@ -95,19 +95,19 @@ class PostsController extends Controller {
 
 		// Get the next newest and next oldest post if the config says to show these links on the view page
 		$newer = $older = false;
-		if (config('laravel-blog::views.view_page.show_adjacent_items'))
+		if (config('laravel-blog.views.view_page.show_adjacent_items'))
 		{
 			$newer = $post->newer();
 			$older = $post->older();
 		}
 
 		// Get the archives data if the config says to show the archives on the view page
-		if (config('laravel-blog::views.view_page.show_archives'))
+		if (config('laravel-blog.views.view_page.show_archives'))
 		{
 			$archives = $this->post->archives();
 		}
 
-		return \View::make(config('laravel-blog::views.view_page.view'), compact('post', 'newer', 'older', 'archives'));
+		return \View::make(config('laravel-blog.views.view_page.view'), compact('post', 'newer', 'older', 'archives'));
 
 	}
 
@@ -118,8 +118,8 @@ class PostsController extends Controller {
 	{
 		$feed = Rss::feed('2.0', 'UTF-8');
 		$feed->channel(array(
-			'title' => config('laravel-blog::meta.rss_feed.title'),
-			'description' => config('laravel-blog::meta.rss_feed.description'),
+			'title' => config('laravel-blog.meta.rss_feed.title'),
+			'description' => config('laravel-blog.meta.rss_feed.description'),
 			'link' => \URL::current(),
 		));
 		$posts = $this->post->live()
