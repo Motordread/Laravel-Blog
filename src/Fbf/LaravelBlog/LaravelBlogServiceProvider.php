@@ -20,13 +20,17 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 	{
 		$this->package('fbf/laravel-blog');
 
-		if (\Config::get('laravel-blog::routes.use_package_routes', true))
+		if (config('laravel-blog::routes.use_package_routes', true))
 		{
-			include __DIR__.'/../../routes.php';
+			$this->loadRoutesFrom(__DIR__.'/../../routes.php');
 		}
 
 		\App::register('Thujohn\Rss\RssServiceProvider');
 		\App::register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
+
+		$this->publishes([
+			__DIR__.'/config' => config_path('laravel-blog.php'),
+		], 'laravel-blog');
 
 		// Shortcut so developers don't need to add an Alias in app/config/app.php
 		$this->app->booting(function()
