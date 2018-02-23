@@ -18,28 +18,34 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('fbf/laravel-blog');
+		$this->loadViewsFrom(__DIR__ . '/../../views', 'laravel-blog');
+		$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'laravel-blog');
 
-		if (config('laravel-blog::routes.use_package_routes', true))
+		if (\Config::get('laravel-blog.routes.use_package_routes', true))
 		{
 			$this->loadRoutesFrom(__DIR__.'/../../routes.php');
 		}
 
-		\App::register('Thujohn\Rss\RssServiceProvider');
-		\App::register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
-
 		$this->publishes([
-			__DIR__.'/config' => config_path('laravel-blog.php'),
-		], 'laravel-blog');
+			__DIR__ . '/../../config/administrator/posts.php' => config_path('laravel-blog/administrator/posts.php'),
+			__DIR__ . '/../../config/link.php' => config_path('laravel-blog/link.php'),
+			__DIR__ . '/../../config/meta.php' => config_path('laravel-blog/meta.php'),
+			__DIR__ . '/../../config/routes.php' => config_path('laravel-blog/routes.php'),
+			__DIR__ . '/../../config/seed.php' => config_path('laravel-blog/seed.php'),
+			__DIR__ . '/../../config/views.php' => config_path('laravel-blog/views.php'),
+			__DIR__ . '/../../config/you_tube.php' => config_path('laravel-blog/you_tube.php'),
+		]);
 
 		// Shortcut so developers don't need to add an Alias in app/config/app.php
+		\App::register('Thujohn\Rss\RssServiceProvider');
+		\App::register('Cviebrock\EloquentSluggable\ServiceProvider');
+
 		$this->app->booting(function()
 		{
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
 			$loader->alias('Fbf\LaravelBlog\Rss', 'Thujohn\Rss\RssFacade');
 			$loader->alias('Sluggable', 'Cviebrock\EloquentSluggable\Facades\Sluggable');
 		});
-
 	}
 
 	/**

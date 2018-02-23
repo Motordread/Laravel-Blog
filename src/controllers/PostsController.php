@@ -1,6 +1,8 @@
 <?php namespace Fbf\LaravelBlog;
 
-class PostsController extends \BaseController {
+use App\Http\Controllers\Controller;
+
+class PostsController extends Controller {
 
 	/**
 	 * @var \Fbf\LaravelBlog\Post
