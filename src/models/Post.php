@@ -310,7 +310,7 @@ class Post extends Model {
 	 */
 	public function getUrl()
 	{
-		return \URL::action('Fbf\LaravelBlog\PostsController@view', array('slug' => $this->slug));
+		return \URL::action('\Fbf\LaravelBlog\PostsController@view', array('slug' => $this->slug));
 	}
 
 	/**
