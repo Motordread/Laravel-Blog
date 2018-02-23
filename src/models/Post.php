@@ -1,8 +1,9 @@
 <?php namespace Fbf\LaravelBlog;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class Post extends \Eloquent {
+class Post extends Model {
 
 	use SoftDeletes;
 	protected $dates = ['deleted_at'];
@@ -261,7 +262,7 @@ class Post extends \Eloquent {
 			$config .= 'sizes.' . $size . '.';
 		}
 		$config .= $property;
-		return \Config::get($config);
+		return config($config);
 	}
 
 	/**
@@ -281,7 +282,7 @@ class Post extends \Eloquent {
 	 */
 	public function getYouTubeThumbnailImage()
 	{
-		return str_replace('%YOU_TUBE_VIDEO_ID%', $this->you_tube_video_id, \Config::get($this->getConfigPrefix().'you_tube.thumbnail_code'));
+		return str_replace('%YOU_TUBE_VIDEO_ID%', $this->you_tube_video_id, config($this->getConfigPrefix().'you_tube.thumbnail_code'));
 	}
 
 	/**
@@ -291,7 +292,7 @@ class Post extends \Eloquent {
 	 */
 	public function getYouTubeEmbedCode()
 	{
-		return str_replace('%YOU_TUBE_VIDEO_ID%', $this->you_tube_video_id, \Config::get($this->getConfigPrefix().'you_tube.embed_code'));
+		return str_replace('%YOU_TUBE_VIDEO_ID%', $this->you_tube_video_id, config($this->getConfigPrefix().'you_tube.embed_code'));
 	}
 
 	/**
@@ -300,7 +301,7 @@ class Post extends \Eloquent {
 	 */
 	public function getDate()
 	{
-		return date(\Config::get($this->getConfigPrefix().'views.published_date_format'), strtotime($this->published_date));
+		return date(config($this->getConfigPrefix().'views.published_date_format'), strtotime($this->published_date));
 	}
 
 	/**

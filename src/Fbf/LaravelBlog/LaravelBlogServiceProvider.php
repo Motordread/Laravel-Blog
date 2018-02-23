@@ -21,7 +21,7 @@ class LaravelBlogServiceProvider extends ServiceProvider {
 		$this->loadViewsFrom(__DIR__ . '/../../views', 'laravel-blog');
 		$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'laravel-blog');
 
-		if (\Config::get('laravel-blog.routes.use_package_routes', true))
+		if (config('laravel-blog.routes.use_package_routes', true))
 		{
 			$this->loadRoutesFrom(__DIR__.'/../../routes.php');
 		}
