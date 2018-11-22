@@ -1,6 +1,7 @@
 <?php namespace Fbf\LaravelBlog;
 
 use App\Http\Controllers\Controller;
+use Thujohn\Rss\RssFacade as Rss;
 
 class PostsController extends Controller {
 
@@ -131,7 +132,7 @@ class PostsController extends Controller {
 			$feed->item(array(
 				'title' => $post->title,
 				'description' => $post->summary,
-				'link' => \URL::action('Fbf\LaravelBlog\PostsController@view', array('slug' => $post->slug)),
+				'link' => \URL::action('\Fbf\LaravelBlog\PostsController@view', array('slug' => $post->slug)),
 			));
 		}
 		return \Response::make($feed, 200, array('Content-Type', 'application/rss+xml'));
